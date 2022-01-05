@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-app-deployment
+  labels:
+    app: hello
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello
+  template:
+    metadata:
+      labels:
+        app: hello
+    spec:
+      nodeSelector:
+        type: backend
+      containers:
+        - name: hello
+          image: osman222/hello:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
